@@ -146,15 +146,15 @@ console.log("EMAIL RESPONSE:", emailResponse);
   registration,
   registrationId,
 });
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+  console.error("REGISTER ERROR:", error);
 
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Server Error",
-      },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      error: error?.message || String(error),
+    },
+    { status: 500 }
+  );
+}
 }
